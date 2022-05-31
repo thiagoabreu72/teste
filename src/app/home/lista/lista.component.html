@@ -1,0 +1,21 @@
+<ion-content>
+  <ion-list style="background: white;">
+    <!-- <div style="background-color: aqua; height: 50px"> -->
+    <!-- <ion-item style="text-align: center; position: absolute">
+        <ion-spinner name="bubbles"></ion-spinner>
+      </ion-item> -->
+    <img src="../../../assets/img/carregando.gif" alt="" *ngIf="this.carregando" />
+    <!-- </div> -->
+
+    <ion-item *ngIf="(this.retornoWeb !== 'OK')&&(this.retornoWeb !== undefined)&&(!this.carregando)"
+    style="text-align: center; background: white;">
+      <strong>{{this.retornoWeb}}</strong>
+    </ion-item>
+
+    <ion-item *ngFor="let item of this.listaTreinamentos" style="--background: white;">
+      <strong>
+        <h6 [style]="alteraCor(item.temReq)">{{ item.nomCua }}</h6>
+      </strong>
+    </ion-item>
+  </ion-list>
+</ion-content>

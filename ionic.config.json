@@ -1,0 +1,7 @@
+{
+  "name": "QR Code - BP&BL",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

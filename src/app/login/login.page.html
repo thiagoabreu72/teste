@@ -1,0 +1,43 @@
+<ion-content style="--ion-background-color: rgb(57, 125, 90)">
+
+
+  <ion-grid > <!--[style]="mudarCorBackgroud"-->
+    <ion-row style="width: 100%; height: 100%">
+      <ion-col size="2"></ion-col>
+      <ion-col style=" margin-block: 30%" size="8">
+        <!--<strong><span>Login</span></strong>-->
+
+        <ion-img src="../../assets/img/logo.png"></ion-img>
+        <br>
+        <br>
+        <form [formGroup]="formLogin">
+
+          <div>
+            <ion-item class="ion-margin-top campos" lines="none" style="--background: white">
+              <ion-input type="email" placeholder="Usuário" formControlName="usuario" style="color: black;" ></ion-input> <!--(focusin)="mudaCor(true)"
+                (focusout)="mudaCor(false)"-->
+            </ion-item>
+
+            <ion-item class="ion-margin-top campos" lines="none" style="--background: white">
+              <ion-input type="password" placeholder="Senha" formControlName="senha" style="color: black;" ></ion-input> <!--(focusin)="mudaCor(true)"
+                (focusout)="mudaCor(false)"-->
+            </ion-item>
+          </div>
+          <br>
+          <ion-checkbox checked="false" id="check" color="dark" formControlName="check"></ion-checkbox>
+          <label for="checar" style="color: white;"> Salvar Dados</label>
+
+        </form>
+
+        <img src="../../../assets/img/carregando.gif" alt="" *ngIf="this.carregando" />
+
+        <ion-button class="ion-margin-top campos" color="light" expand="block" (click)="obterDados()">
+          Entrar
+        </ion-button>
+
+      </ion-col>
+      <ion-col size="2"></ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

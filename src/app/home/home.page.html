@@ -1,0 +1,69 @@
+<ion-header [hidden]="scanActive" style="background-color: #397d5a; text-align: center">
+  <div style="background-color: #397d5a; width: auto">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="1"> </ion-col>
+        <ion-col size="9.8" style="text-align: center; text-align-last: auto">
+          <ion-title style="
+              text-align: center;
+              background: rgb(57, 125, 90);
+              color: white;
+            ">
+            <strong style="font-size: medium">Consultar Treinamentos</strong>
+          </ion-title>
+        </ion-col>
+        <ion-col size="1">
+          <button style="
+              background-color: #397d5a;
+              height: 20px;
+              width: -webkit-fill-available;
+            " (click)="sair()">
+            <ion-icon name="exit-outline" style="color: white"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!--<ion-title style="text-align: center;background: rgb(57, 125, 90);height: 40px;">
+      <strong>Consultar Treinamentos</strong>
+    </ion-title>-->
+  </div>
+</ion-header>
+
+<ion-content [style.--background]="scanActive ? '#00000000' : '#fff'">
+  <div style="text-align: center">
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size="12">
+          <button class="fonte" style="
+              background-color: #146e41;
+              padding: 1rem;
+              border-radius: 5px 5px 5px 5px;
+              width: -webkit-fill-available;
+              color: white;
+            " expand="full" (click)="startScan()" [hidden]="scanActive">
+            <ion-icon name="scan" slot="start"></ion-icon>
+            Iniciar Scanner
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!--<ion-button (click)="apresentaCarregando()"></ion-button>-->
+
+  <app-lista [hidden]="!lista"></app-lista>
+
+  <!--<p class="ion-text-center" *ngIf="result && !scanActive">{{ result }} asdfgsdfhg</p>-->
+
+  <ion-row class="scanner-buttons" [hidden]="!scanActive">
+    <ion-col class="ion-no-padding">
+      <ion-button expand="full" style="--background: #397d5a; color: white" (click)="stopScanner()">
+        Parar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <div class="scan-box" [hidden]="!scanActive"></div>
+</ion-content>
