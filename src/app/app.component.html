@@ -1,0 +1,88 @@
+<div>
+  <div
+    *ngIf="this.carregandoDados"
+    class="c-loader container"
+    style="margin-top: 5rem"
+  ></div>
+</div>
+
+<div>
+  <div
+    *ngIf="!this.gerouToken && !this.carregandoDados"
+    style="margin-top: 5rem; text-align: center"
+  >
+    <h1>
+      Não foi possível carregar a página. Verifique se você está logado(a) no
+      Senior X. <br />
+      Obs.: A aplicação não está disponível na versão XT.
+    </h1>
+  </div>
+</div>
+
+<section *ngIf="!this.carregandoDados && this.gerouToken">
+  <h1>Presença - Treinamentos</h1>
+
+  <form action="" [formGroup]="formAutenticacao">
+    <div class="card">
+      <div class="">
+        <br />
+        <label for="colaborador">Usuário</label>
+        <input
+          list="colaborador"
+          class="form-control"
+          formControlName="colaborador"
+        />
+        <datalist id="colaborador">
+          <option
+            *ngFor="let emp of this.colaborador"
+            [value]="emp.cadNom"
+          ></option>
+        </datalist>
+      </div>
+
+      <div class="">
+        <br />
+        <label for="senha">Senha</label>
+        <input
+          id="senha"
+          type="password"
+          formControlName="senha"
+          class="form-control"
+        />
+      </div>
+
+      <div>
+        <br />
+        <button
+          (click)="validaUsuario()"
+          class="btn btn-primary"
+          [disabled]="this.habilitaSpinner"
+        >
+          Registrar
+        </button>
+      </div>
+      <div
+        class="card"
+        *ngIf="!this.habilitaSpinner"
+        style="margin-inline: initial"
+      >
+        <h5>Lista de Registros</h5>
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let lista of this.listaRegistrada"
+          >
+            {{ lista }}
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="this.habilitaSpinner" class="c-loader container"></div>
+    </div>
+  </form>
+</section>
+
+<div>
+  <datalist id="teste">
+    <option *ngFor="let j of this.colaborador" [value]="j.Usuarios"></option>
+  </datalist>
+</div>

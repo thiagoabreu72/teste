@@ -1,0 +1,71 @@
+h1, H2 {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1;
+  color: #697882;
+  font-size: 22px;
+  margin-left: 2rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 4px;
+  margin: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+
+  h5 {
+    font-family: "Open Sans", sans-serif;
+    line-height: 1;
+    color: #697882;
+    font-size: 22px;
+    margin-left: initial;
+    margin-top: initial;
+  }
+}
+
+.btn-primary {
+  background-color: #428bca;
+}
+
+.c-loader {
+  animation: is-rotating 1s infinite;
+  border: 6px solid #e5e5e5;
+  border-radius: 50%;
+  border-top-color: #428bca;
+  height: 50px;
+  width: 50px;
+}
+
+@keyframes is-rotating {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.alert {
+  margin: 2rem;
+}
+
+.spinner-modal {
+  margin-top: 100%;
+  background-color: transparent;
+}
+
+.alerta-entrada {
+  animation: go-back 1.5s alternate;
+}
+
+.alerta-saida {
+  animation: go-back 1.5s reverse;
+}
+
+@keyframes go-back {
+  from {
+    transform: translateX(110%);
+  }
+  to {
+    transform: translateX(80%);
+  }
+}
