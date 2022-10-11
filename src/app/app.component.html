@@ -26,6 +26,17 @@
     <div class="card">
       <div class="">
         <br />
+        <label for="curso">Curso</label>
+        <input list="curso" class="form-control" formControlName="curso" />
+        <datalist id="curso">
+          <option
+            *ngFor="let item of this.dadosCurso"
+            [value]="item.codCua + ' - ' + item.nomRed"
+          ></option>
+        </datalist>
+      </div>
+      <div class="">
+        <br />
         <label for="colaborador">Usuário</label>
         <input
           list="colaborador"

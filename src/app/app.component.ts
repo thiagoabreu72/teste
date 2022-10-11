@@ -1,3 +1,4 @@
+import { Curso } from './interfaces/curso';
 import { RetornoG5 } from './interfaces/retornoG5';
 import { UsuarioLogado } from './interfaces/usuario-logado';
 import { Component, Output } from '@angular/core';
@@ -19,10 +20,10 @@ export class AppComponent {
   private userLogIn: any;
   private userData: UsuarioLogado;
   private body: Colaborador;
+  dadosCurso: Curso;
   gerouToken: boolean = true;
   carregandoDados: boolean = true;
   habilitaSpinner: boolean = false;
-  //modal: string = 'modal';
   colaborador: Colaborador[];
   usuarioValido: boolean = false;
   formAutenticacao: FormGroup;
@@ -41,6 +42,7 @@ export class AppComponent {
         if (retorno) {
           setTimeout(() => {
             this.buscaColaboradores();
+            this.buscaCursos();
           }, 500);
         } else alert('Não foi possível obter Token.');
       },
@@ -50,23 +52,17 @@ export class AppComponent {
     );
 
     this.formAutenticacao = new FormGroup({
+      curso: new FormControl(null, Validators.required),
       colaborador: new FormControl(null, Validators.required),
       senha: new FormControl(null, Validators.required),
     });
   }
 
-  /*async getEmployee() {
-    await this.service.getEmployee().subscribe((retorno: any) => {
-      this.employee = [];
-      for (let lista of retorno.contents) {
-        this.employee.push({
-          cadNom: lista.registerNumber + ' - ' + lista.person.fullName,
-          numCad: lista.registerNumber,
-          nomFum: lista.person.fullName,
-        });
-      }
+  buscaCursos() {
+    this.service.buscaCursos().subscribe((retorno) => {
+      this.dadosCurso = retorno.dados;
     });
-  }*/
+  }
 
   async buscaColaboradores() {
     const corpo = {
@@ -194,8 +190,8 @@ export class AppComponent {
             });
 
             //if (i + 1 == usuarios[0].usuarios.length) {
-              //alert(error.error.message);
-              //this.habilitaSpinner = false;
+            //alert(error.error.message);
+            //this.habilitaSpinner = false;
             //}
             verificaStatus.push({ msgRet: error.error.message, status: 0 });
           }

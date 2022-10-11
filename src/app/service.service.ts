@@ -11,13 +11,14 @@ export class ServiceService {
   private urlAuth = environment.urlPlatform + '/authentication/actions/login';
   private listUsers = environment.urlPlatform + '/user/queries/listUsers';
   private urlSenior = environment.urlSenior;
-  private portasSenior = ['insere', 'colaboradores'];
+  private portasSenior = ['insere', 'colaboradores', 'cursos'];
   private listEmployee =
     'https://api.senior.com.br/hcm/employeejourney/entities/employee';
   private contexto: string = 'SXI-API';
   private modulo: string = 'rubi';
   private urlInsere: string;
   private urlColaboradores: string;
+  private urlCursos: string;
   private token = null;
   private tokenColaborador = null;
   //gerouToken: boolean = true;
@@ -38,7 +39,7 @@ export class ServiceService {
         alert(
           'Não foi possível obter token. Verifique se a tela está sendo acessada pela plataforma Senior X.'
         );
-          this.capturaToken.next('false');
+        this.capturaToken.next('false');
       });
 
     this.urlInsere = this.converteUrl(this.urlSenior, this.portasSenior[0]);
@@ -46,7 +47,8 @@ export class ServiceService {
       this.urlSenior,
       this.portasSenior[1]
     );
-    //console.log(this.urlSxi);
+    this.urlCursos = this.converteUrl(this.urlSenior, this.portasSenior[2]);
+    //console.log(this.urlCursos);
   }
 
   // Obtem o usuário da Senior
@@ -58,26 +60,6 @@ export class ServiceService {
     }
   }
 
-  /*getListUsers(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `bearer ${this.token.access_token}`,
-      client_id: '1173fa15-341a-4568-9a33-b41e5ac719ed',
-    });
-
-    return this.http.get<any>(this.listUsers, { headers });
-  }*/
-
-  /*getEmployee(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `bearer ${this.token.access_token}`,
-      client_id: '1173fa15-341a-4568-9a33-b41e5ac719ed',
-    });
-
-    return this.http.get<any>(this.listEmployee, { headers });
-  }*/
-
   buscaColaboradores(body: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -85,6 +67,15 @@ export class ServiceService {
     });
 
     return this.http.post<any>(this.urlColaboradores, body, { headers });
+  }
+
+  buscaCursos(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `bearer ${this.token.access_token}`,
+    });
+
+    return this.http.post<any>(this.urlCursos, {}, { headers });
   }
 
   enviaDados(body: any): Observable<any> {
